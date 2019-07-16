@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Client &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model" href="model.html" />
+    <link rel="prev" title="Mission Database" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="client">
+<h1>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">MDBClient</span></code> instances are usually created via
+<a class="reference internal" href="../general/client.html#yamcs.client.YamcsClient.get_mdb" title="yamcs.client.YamcsClient.get_mdb"><code class="xref py py-func docutils literal notranslate"><span class="pre">YamcsClient.get_mdb()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yamcs.client</span> <span class="kn">import</span> <span class="n">YamcsClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">YamcsClient</span><span class="p">(</span><span class="s1">&#39;localhost:8090&#39;</span><span class="p">)</span>
+<span class="n">mdb</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_mdb</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s1">&#39;simulator&#39;</span><span class="p">)</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+<dl class="class">
+<dt id="yamcs.mdb.client.MDBClient">
+<em class="property">class </em><code class="descclassname">yamcs.mdb.client.</code><code class="descname">MDBClient</code><span class="sig-paren">(</span><em>client</em>, <em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.get_algorithm">
+<code class="descname">get_algorithm</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.get_algorithm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single algorithm by its unique name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Either a fully-qualified XTCE name or an alias in the
+format <code class="docutils literal notranslate"><span class="pre">NAMESPACE/NAME</span></code>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.mdb.model.Algorithm" title="yamcs.mdb.model.Algorithm">Algorithm</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.get_command">
+<code class="descname">get_command</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.get_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single command by its unique name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Either a fully-qualified XTCE name or an alias in the
+format <code class="docutils literal notranslate"><span class="pre">NAMESPACE/NAME</span></code>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.mdb.model.Command" title="yamcs.mdb.model.Command">Command</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.get_container">
+<code class="descname">get_container</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.get_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single container by its unique name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Either a fully-qualified XTCE name or an alias in the
+format <code class="docutils literal notranslate"><span class="pre">NAMESPACE/NAME</span></code>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.mdb.model.Container" title="yamcs.mdb.model.Container">Container</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.get_parameter">
+<code class="descname">get_parameter</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single parameter by its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Either a fully-qualified XTCE name or an alias in the
+format <code class="docutils literal notranslate"><span class="pre">NAMESPACE/NAME</span></code>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.mdb.model.Parameter" title="yamcs.mdb.model.Parameter">Parameter</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.get_space_system">
+<code class="descname">get_space_system</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.get_space_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single space system by its unique name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A fully-qualified XTCE name</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.mdb.model.SpaceSystem" title="yamcs.mdb.model.SpaceSystem">SpaceSystem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.list_algorithms">
+<code class="descname">list_algorithms</code><span class="sig-paren">(</span><em>page_size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.list_algorithms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the algorithms visible to this client.</p>
+<p>Algorithms are returned in lexicographical order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#yamcs.mdb.model.Algorithm" title="yamcs.mdb.model.Algorithm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Algorithm</span></code></a> iterator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.list_commands">
+<code class="descname">list_commands</code><span class="sig-paren">(</span><em>page_size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.list_commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the commands visible to this client.</p>
+<p>Commands are returned in lexicographical order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#yamcs.mdb.model.Command" title="yamcs.mdb.model.Command"><code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code></a> iterator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.list_containers">
+<code class="descname">list_containers</code><span class="sig-paren">(</span><em>page_size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.list_containers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the containers visible to this client.</p>
+<p>Containers are returned in lexicographical order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#yamcs.mdb.model.Container" title="yamcs.mdb.model.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a> iterator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.list_parameters">
+<code class="descname">list_parameters</code><span class="sig-paren">(</span><em>parameter_type=None</em>, <em>page_size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.list_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the parameters visible to this client.</p>
+<p>Parameters are returned in lexicographical order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parameter_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The type of parameter</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.mdb.model.Parameter" title="yamcs.mdb.model.Parameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></a> iterator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.mdb.client.MDBClient.list_space_systems">
+<code class="descname">list_space_systems</code><span class="sig-paren">(</span><em>page_size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.client.MDBClient.list_space_systems" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the space systems visible to this client.</p>
+<p>Space systems are returned in lexicographical order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#yamcs.mdb.model.SpaceSystem" title="yamcs.mdb.model.SpaceSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceSystem</span></code></a> iterator</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Client</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Mission Database</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Mission Database</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Mission Database</a></li>
+      <li>Next: <a href="model.html" title="next chapter">Model</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

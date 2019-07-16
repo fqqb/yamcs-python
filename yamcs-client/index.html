@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Yamcs Client Library for Python &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="General Client" href="general/index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="yamcs-client-library-for-python">
+<h1>Yamcs Client Library for Python<a class="headerlink" href="#yamcs-client-library-for-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>Install Python 3.4 or higher.</p>
+<p>If necessary, you can also use Python 2.7, but be aware that this final 2.x version will soon reach its long anticipated <a class="reference external" href="https://www.python.org/dev/peps/pep-0373/">End Of Life</a> date. Python versions lower than 2.7 are already EOL and therefore <em>not</em> supported.</p>
+<p>Install <code class="docutils literal notranslate"><span class="pre">yamcs-client</span></code> from PyPI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">yamcs</span><span class="o">-</span><span class="n">client</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Get domain-specific clients:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yamcs.client</span> <span class="kn">import</span> <span class="n">YamcsClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">YamcsClient</span><span class="p">(</span><span class="s1">&#39;localhost:8090&#39;</span><span class="p">)</span>
+
+<span class="n">mdb</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_mdb</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s1">&#39;simulator&#39;</span><span class="p">)</span>
+<span class="c1"># ...</span>
+
+<span class="n">archive</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_archive</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s1">&#39;simulator&#39;</span><span class="p">)</span>
+<span class="c1"># ...</span>
+
+<span class="n">processor</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_processor</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s1">&#39;simulator&#39;</span><span class="p">,</span> <span class="n">processor</span><span class="o">=</span><span class="s1">&#39;realtime&#39;</span><span class="p">)</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="general/index.html"><span class="doc">General Client</span></a></p></li>
+<li><p><a class="reference internal" href="mdb/index.html"><span class="doc">Mission Database</span></a></p></li>
+<li><p><a class="reference internal" href="tmtc/index.html"><span class="doc">TM/TC Processing</span></a></p></li>
+<li><p><a class="reference internal" href="archive/index.html"><span class="doc">Archive</span></a></p></li>
+<li><p><a class="reference internal" href="storage/index.html"><span class="doc">Object Storage</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="examples/index.html"><span class="doc">Examples</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="general/index.html">General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="general/index.html" title="next chapter">General Client</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Model &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TM/TC Processing" href="../tmtc/index.html" />
+    <link rel="prev" title="Client" href="client.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-yamcs.mdb.model">
+<span id="model"></span><h1>Model<a class="headerlink" href="#module-yamcs.mdb.model" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="yamcs.mdb.model.Algorithm">
+<em class="property">class </em><code class="descclassname">yamcs.mdb.model.</code><code class="descname">Algorithm</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.model.Algorithm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.mdb.model.Algorithm.aliases">
+<code class="descname">aliases</code><a class="headerlink" href="#yamcs.mdb.model.Algorithm.aliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of (namespace, name) pairs, as 2-tuples</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Algorithm.description">
+<code class="descname">description</code><a class="headerlink" href="#yamcs.mdb.model.Algorithm.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Algorithm.long_description">
+<code class="descname">long_description</code><a class="headerlink" href="#yamcs.mdb.model.Algorithm.long_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Long description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Algorithm.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.mdb.model.Algorithm.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Algorithm.qualified_name">
+<code class="descname">qualified_name</code><a class="headerlink" href="#yamcs.mdb.model.Algorithm.qualified_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full name (incl. space system)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.mdb.model.Command">
+<em class="property">class </em><code class="descclassname">yamcs.mdb.model.</code><code class="descname">Command</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.model.Command" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.mdb.model.Command.abstract">
+<code class="descname">abstract</code><a class="headerlink" href="#yamcs.mdb.model.Command.abstract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this is an abstract command. Abstract commands are
+intended for inheritance and cannot be issued directly.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Command.aliases">
+<code class="descname">aliases</code><a class="headerlink" href="#yamcs.mdb.model.Command.aliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of (namespace, name) pairs, as 2-tuples</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Command.base_command">
+<code class="descname">base_command</code><a class="headerlink" href="#yamcs.mdb.model.Command.base_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Command.description">
+<code class="descname">description</code><a class="headerlink" href="#yamcs.mdb.model.Command.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Command.long_description">
+<code class="descname">long_description</code><a class="headerlink" href="#yamcs.mdb.model.Command.long_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Long description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Command.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.mdb.model.Command.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Command.qualified_name">
+<code class="descname">qualified_name</code><a class="headerlink" href="#yamcs.mdb.model.Command.qualified_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full name (incl. space system)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Command.significance">
+<code class="descname">significance</code><a class="headerlink" href="#yamcs.mdb.model.Command.significance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.mdb.model.Container">
+<em class="property">class </em><code class="descclassname">yamcs.mdb.model.</code><code class="descname">Container</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.model.Container" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.mdb.model.Container.aliases">
+<code class="descname">aliases</code><a class="headerlink" href="#yamcs.mdb.model.Container.aliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of (namespace, name) pairs, as 2-tuples</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Container.description">
+<code class="descname">description</code><a class="headerlink" href="#yamcs.mdb.model.Container.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Container.long_description">
+<code class="descname">long_description</code><a class="headerlink" href="#yamcs.mdb.model.Container.long_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Long description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Container.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.mdb.model.Container.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Container.qualified_name">
+<code class="descname">qualified_name</code><a class="headerlink" href="#yamcs.mdb.model.Container.qualified_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full name (incl. space system)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.mdb.model.Parameter">
+<em class="property">class </em><code class="descclassname">yamcs.mdb.model.</code><code class="descname">Parameter</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.model.Parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>From XTCE:</p>
+<blockquote>
+<div><p>A Parameter is a description of something that can have
+a value. It is not the value itself.</p>
+</div></blockquote>
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Parameter.aliases">
+<code class="descname">aliases</code><a class="headerlink" href="#yamcs.mdb.model.Parameter.aliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of (namespace, name) pairs, as 2-tuples</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Parameter.data_source">
+<code class="descname">data_source</code><a class="headerlink" href="#yamcs.mdb.model.Parameter.data_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies how this parameter originated (example: <code class="docutils literal notranslate"><span class="pre">TELEMETERED</span></code>)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Parameter.description">
+<code class="descname">description</code><a class="headerlink" href="#yamcs.mdb.model.Parameter.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Parameter.long_description">
+<code class="descname">long_description</code><a class="headerlink" href="#yamcs.mdb.model.Parameter.long_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Long description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Parameter.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.mdb.model.Parameter.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Parameter.qualified_name">
+<code class="descname">qualified_name</code><a class="headerlink" href="#yamcs.mdb.model.Parameter.qualified_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full name (incl. space system)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.mdb.model.Significance">
+<em class="property">class </em><code class="descclassname">yamcs.mdb.model.</code><code class="descname">Significance</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.model.Significance" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.mdb.model.Significance.consequence_level">
+<code class="descname">consequence_level</code><a class="headerlink" href="#yamcs.mdb.model.Significance.consequence_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>One of <code class="docutils literal notranslate"><span class="pre">NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">WATCH</span></code>, <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">DISTRESS</span></code>, <code class="docutils literal notranslate"><span class="pre">CRITICAL</span></code>
+or <code class="docutils literal notranslate"><span class="pre">SEVERE</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.Significance.reason">
+<code class="descname">reason</code><a class="headerlink" href="#yamcs.mdb.model.Significance.reason" title="Permalink to this definition">¶</a></dt>
+<dd><p>Message attached to this significance.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.mdb.model.SpaceSystem">
+<em class="property">class </em><code class="descclassname">yamcs.mdb.model.</code><code class="descname">SpaceSystem</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.mdb.model.SpaceSystem" title="Permalink to this definition">¶</a></dt>
+<dd><p>From XTCE:</p>
+<blockquote>
+<div><p>A SpaceSystem is a collection of SpaceSystem(s) including space assets,
+ground assets, multi-satellite systems and sub-systems.  A SpaceSystem
+is the root element for the set of data necessary to monitor and command
+an arbitrary space device - this includes the binary decomposition of
+the data streams going into and out of a device.</p>
+</div></blockquote>
+<dl class="attribute">
+<dt id="yamcs.mdb.model.SpaceSystem.aliases">
+<code class="descname">aliases</code><a class="headerlink" href="#yamcs.mdb.model.SpaceSystem.aliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of (namespace, name) pairs, as 2-tuples</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.SpaceSystem.description">
+<code class="descname">description</code><a class="headerlink" href="#yamcs.mdb.model.SpaceSystem.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.SpaceSystem.long_description">
+<code class="descname">long_description</code><a class="headerlink" href="#yamcs.mdb.model.SpaceSystem.long_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Long description.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.SpaceSystem.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.mdb.model.SpaceSystem.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.mdb.model.SpaceSystem.qualified_name">
+<code class="descname">qualified_name</code><a class="headerlink" href="#yamcs.mdb.model.SpaceSystem.qualified_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Full name (incl. space system)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Client</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Mission Database</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Mission Database</a><ul>
+      <li>Previous: <a href="client.html" title="previous chapter">Client</a></li>
+      <li>Next: <a href="../tmtc/index.html" title="next chapter">TM/TC Processing</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

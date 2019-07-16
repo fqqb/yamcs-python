@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>alarms.py &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="archive_breakdown.py" href="archive_breakdown.html" />
+    <link rel="prev" title="Examples" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="alarms-py">
+<h1>alarms.py<a class="headerlink" href="#alarms-py" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+
+<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>
+
+<span class="kn">from</span> <span class="nn">yamcs.client</span> <span class="k">import</span> <span class="n">YamcsClient</span>
+
+
+<span class="k">def</span> <span class="nf">receive_callbacks</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Registers an alarm callback.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">alarm_update</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Alarm Update:&#39;</span><span class="p">,</span> <span class="n">alarm_update</span><span class="p">)</span>
+
+    <span class="n">processor</span><span class="o">.</span><span class="n">create_alarm_subscription</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">acknowledge_all</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Acknowledges all active alarms.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">alarm</span> <span class="ow">in</span> <span class="n">processor</span><span class="o">.</span><span class="n">list_alarms</span><span class="p">():</span>
+        <span class="n">processor</span><span class="o">.</span><span class="n">acknowledge_alarm</span><span class="p">(</span><span class="n">alarm</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;false alarm&#39;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">YamcsClient</span><span class="p">(</span><span class="s1">&#39;localhost:8090&#39;</span><span class="p">)</span>
+    <span class="n">processor</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_processor</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s1">&#39;simulator&#39;</span><span class="p">,</span>
+                                     <span class="n">processor</span><span class="o">=</span><span class="s1">&#39;realtime&#39;</span><span class="p">)</span>
+    <span class="n">receive_callbacks</span><span class="p">()</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Acknowledging all...&#39;</span><span class="p">)</span>
+    <span class="n">acknowledge_all</span><span class="p">()</span>
+
+    <span class="c1"># If a parameter remains out of limits, a new alarm instance is created</span>
+    <span class="c1"># on the next value update.  So you would keep receiving callbacks on</span>
+    <span class="c1"># the subscription.</span>
+
+    <span class="c1"># The subscription is non-blocking. Prevent the main</span>
+    <span class="c1"># thread from exiting</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">alarms.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive_breakdown.html">archive_breakdown.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive_retrieval.html">archive_retrieval.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authenticate.html">authenticate.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccsds_completeness.html">ccsds_completeness.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commanding.html">commanding.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_links.html">data_links.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">events.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mission_time.html">mission_time.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_subscription.html">parameter_subscription.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_with_matplotlib.html">plot_with_matplotlib.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_mdb.html">query_mdb.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read_write_parameters.html">read_write_parameters.py</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Examples</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Examples</a></li>
+      <li>Next: <a href="archive_breakdown.html" title="next chapter">archive_breakdown.py</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

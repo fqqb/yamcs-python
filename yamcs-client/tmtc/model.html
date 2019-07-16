@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Model &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Archive" href="../archive/index.html" />
+    <link rel="prev" title="Client" href="client.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-yamcs.tmtc.model">
+<span id="model"></span><h1>Model<a class="headerlink" href="#module-yamcs.tmtc.model" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="yamcs.tmtc.model.Alarm">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">Alarm</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.Alarm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.acknowledge_message">
+<code class="descname">acknowledge_message</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.acknowledge_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Comment provided when acknowledging the alarm.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.acknowledge_time">
+<code class="descname">acknowledge_time</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.acknowledge_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processor time when the alarm was acknowledged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.acknowledged_by">
+<code class="descname">acknowledged_by</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.acknowledged_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Username of the acknowledger.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.count">
+<code class="descname">count</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total number of samples while this alarm is active.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.is_acknowledged">
+<code class="descname">is_acknowledged</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.is_acknowledged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this alarm has been acknowledged.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fully-qualified name of the source of this alarm.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.sequence_number">
+<code class="descname">sequence_number</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.sequence_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sequence number for this specific alarm instance. This allows ensuring
+that operations (such as acknowledgment) are done on the expected alarm
+instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.severity">
+<code class="descname">severity</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.severity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.trigger_time">
+<code class="descname">trigger_time</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.trigger_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processor time when the alarm was triggered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Alarm.violation_count">
+<code class="descname">violation_count</code><a class="headerlink" href="#yamcs.tmtc.model.Alarm.violation_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of violating samples while this alarm is active.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.AlarmUpdate">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">AlarmUpdate</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.AlarmUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object received through callbacks when subscribing to alarm updates.</p>
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.AlarmUpdate.alarm">
+<code class="descname">alarm</code><a class="headerlink" href="#yamcs.tmtc.model.AlarmUpdate.alarm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Latest alarm state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#yamcs.tmtc.model.Alarm" title="yamcs.tmtc.model.Alarm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Alarm</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.AlarmUpdate.update_type">
+<code class="descname">update_type</code><a class="headerlink" href="#yamcs.tmtc.model.AlarmUpdate.update_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of update.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.Calibrator">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">Calibrator</code><span class="sig-paren">(</span><em>context</em>, <em>type</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.Calibrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A calibrator that may be applied to a numeric raw value.</p>
+<p>Two types of calibrators can be applied:</p>
+<ul>
+<li><dl>
+<dt>Polynomial calibrators apply a polynomial expression of the form:</dt><dd><p><cite>y = a + bx + cx^2 + …</cite>.</p>
+<p>The <cite>data</cite> argument must be an array of floats <code class="docutils literal notranslate"><span class="pre">[a,</span> <span class="pre">b,</span> <span class="pre">c,</span> <span class="pre">...]</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Spline calibrators interpolate the raw value between a set of points</dt><dd><p>which represent a linear curve.</p>
+<p>The <cite>data</cite> argument must be an array of <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">y]</span></code> points.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Condition under which this calibrator may be
+applied. The value <code class="docutils literal notranslate"><span class="pre">None</span></code> indicates the
+default calibrator which is only applied if
+no contextual calibrators match.</p></li>
+<li><p><strong>type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – One of <code class="docutils literal notranslate"><span class="pre">polynomial</span></code> or <code class="docutils literal notranslate"><span class="pre">spline</span></code>.</p></li>
+<li><p><strong>data</strong> – Calibration definition for the selected type.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Calibrator.POLYNOMIAL">
+<code class="descname">POLYNOMIAL</code><em class="property"> = 'polynomial'</em><a class="headerlink" href="#yamcs.tmtc.model.Calibrator.POLYNOMIAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.Calibrator.SPLINE">
+<code class="descname">SPLINE</code><em class="property"> = 'spline'</em><a class="headerlink" href="#yamcs.tmtc.model.Calibrator.SPLINE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.CommandHistory">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">CommandHistory</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.acknowledge_event">
+<code class="descname">acknowledge_event</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.acknowledge_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Event indicating the command was acknowledged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#yamcs.tmtc.model.CommandHistoryEvent" title="yamcs.tmtc.model.CommandHistoryEvent"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommandHistoryEvent</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.binary">
+<code class="descname">binary</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binary representation of the command.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.comment">
+<code class="descname">comment</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.comment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional user comment attached when issuing the command.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.events">
+<code class="descname">events</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.events" title="Permalink to this definition">¶</a></dt>
+<dd><p>All events.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#yamcs.tmtc.model.CommandHistoryEvent" title="yamcs.tmtc.model.CommandHistoryEvent"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommandHistoryEvent</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.failure_message">
+<code class="descname">failure_message</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.failure_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.generation_time">
+<code class="descname">generation_time</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.generation_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The generation time as set by Yamcs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.tmtc.model.CommandHistory.is_complete">
+<code class="descname">is_complete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.is_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this command is complete. A command
+can be completed, yet still failed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.tmtc.model.CommandHistory.is_failed">
+<code class="descname">is_failed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.is_failed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this command has failed. If this returns
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, the failure message can be read from the property
+<code class="docutils literal notranslate"><span class="pre">failure_message</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the command.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.origin">
+<code class="descname">origin</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>The origin of this command. This is often empty, but may
+also be a hostname.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.sequence_number">
+<code class="descname">sequence_number</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.sequence_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>The sequence number of this command. This is the sequence
+number assigned by the issuing client.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.source">
+<code class="descname">source</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>String representation of the command.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.transmission_constraints">
+<code class="descname">transmission_constraints</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.transmission_constraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.username">
+<code class="descname">username</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Username of the issuer.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistory.verification_events">
+<code class="descname">verification_events</code><a class="headerlink" href="#yamcs.tmtc.model.CommandHistory.verification_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Events related to command verification.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#yamcs.tmtc.model.CommandHistoryEvent" title="yamcs.tmtc.model.CommandHistoryEvent"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommandHistoryEvent</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.CommandHistoryEvent">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">CommandHistoryEvent</code><span class="sig-paren">(</span><em>name</em>, <em>time</em>, <em>status</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.CommandHistoryEvent" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistoryEvent.name">
+<code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.tmtc.model.CommandHistoryEvent.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this event.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistoryEvent.status">
+<code class="descname">status</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.tmtc.model.CommandHistoryEvent.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Status associated with this event.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.CommandHistoryEvent.time">
+<code class="descname">time</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.tmtc.model.CommandHistoryEvent.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time associated with this event.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.EventAlarm">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">EventAlarm</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.EventAlarm" title="Permalink to this definition">¶</a></dt>
+<dd><p>An alarm triggered by an event.</p>
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.EventAlarm.current_event">
+<code class="descname">current_event</code><a class="headerlink" href="#yamcs.tmtc.model.EventAlarm.current_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Latest event for this alarm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../general/model.html#yamcs.model.Event" title="yamcs.model.Event"><code class="xref py py-class docutils literal notranslate"><span class="pre">Event</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.EventAlarm.most_severe_event">
+<code class="descname">most_severe_event</code><a class="headerlink" href="#yamcs.tmtc.model.EventAlarm.most_severe_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>First event that invoked the highest severity level
+of this alarm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../general/model.html#yamcs.model.Event" title="yamcs.model.Event"><code class="xref py py-class docutils literal notranslate"><span class="pre">Event</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.EventAlarm.trigger_event">
+<code class="descname">trigger_event</code><a class="headerlink" href="#yamcs.tmtc.model.EventAlarm.trigger_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Event that originally triggered the alarm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../general/model.html#yamcs.model.Event" title="yamcs.model.Event"><code class="xref py py-class docutils literal notranslate"><span class="pre">Event</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.IssuedCommand">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">IssuedCommand</code><span class="sig-paren">(</span><em>proto</em>, <em>client</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.tmtc.model.IssuedCommand.binary">
+<code class="descname">binary</code><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binary representation of this command.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.tmtc.model.IssuedCommand.create_command_history_subscription">
+<code class="descname">create_command_history_subscription</code><span class="sig-paren">(</span><em>on_data=None</em>, <em>timeout=60</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.create_command_history_subscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new command history subscription for this command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>on_data</strong> – Function that gets called with  <a class="reference internal" href="#yamcs.tmtc.model.CommandHistory" title="yamcs.tmtc.model.CommandHistory"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommandHistory</span></code></a>
+updates.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The amount of seconds to wait for the request
+to complete.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Future that can be used to manage the background websocket
+subscription</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="client.html#yamcs.tmtc.client.CommandHistorySubscription" title="yamcs.tmtc.client.CommandHistorySubscription">CommandHistorySubscription</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.IssuedCommand.generation_time">
+<code class="descname">generation_time</code><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.generation_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The generation time as set by Yamcs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.IssuedCommand.hex">
+<code class="descname">hex</code><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.hex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hexadecimal string representation of this command.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.IssuedCommand.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The fully-qualified name of this command.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.IssuedCommand.origin">
+<code class="descname">origin</code><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>The origin of this command. This is often empty, but may
+also be a hostname.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.IssuedCommand.queue">
+<code class="descname">queue</code><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the queue that this command was assigned to.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.IssuedCommand.sequence_number">
+<code class="descname">sequence_number</code><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.sequence_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>The sequence number of this command. This is the sequence
+number assigned by the issuing client.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.IssuedCommand.source">
+<code class="descname">source</code><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>String representation of this command.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.IssuedCommand.username">
+<code class="descname">username</code><a class="headerlink" href="#yamcs.tmtc.model.IssuedCommand.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>The username of the issuer.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.ParameterAlarm">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">ParameterAlarm</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.ParameterAlarm" title="Permalink to this definition">¶</a></dt>
+<dd><p>An alarm triggered by a parameter that went out of limits.</p>
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterAlarm.current_value">
+<code class="descname">current_value</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterAlarm.current_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Latest parameter value for this alarm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#yamcs.tmtc.model.ParameterValue" title="yamcs.tmtc.model.ParameterValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterValue</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterAlarm.most_severe_value">
+<code class="descname">most_severe_value</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterAlarm.most_severe_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>First parameter value that invoked the highest severity
+level of this alarm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#yamcs.tmtc.model.ParameterValue" title="yamcs.tmtc.model.ParameterValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterValue</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterAlarm.trigger_value">
+<code class="descname">trigger_value</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterAlarm.trigger_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parameter value that originally triggered the alarm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#yamcs.tmtc.model.ParameterValue" title="yamcs.tmtc.model.ParameterValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterValue</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.ParameterData">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">ParameterData</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.ParameterData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterData.parameters">
+<code class="descname">parameters</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterData.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#yamcs.tmtc.model.ParameterValue" title="yamcs.tmtc.model.ParameterValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterValue</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.ParameterValue">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">ParameterValue</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.eng_value">
+<code class="descname">eng_value</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.eng_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The engineering (calibrated) value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.generation_time">
+<code class="descname">generation_time</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.generation_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time when the parameter was generated. If the parameter
+was extracted from a packet, this usually returns the packet time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.monitoring_result">
+<code class="descname">monitoring_result</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.monitoring_result" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>An identifying name for the parameter value. Typically this is the
+fully-qualified XTCE name, but it may also be an alias depending
+on how the parameter update was requested.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.processing_status">
+<code class="descname">processing_status</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.processing_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.range_condition">
+<code class="descname">range_condition</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.range_condition" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the value is out of limits, this indicates <code class="docutils literal notranslate"><span class="pre">LOW</span></code> or <code class="docutils literal notranslate"><span class="pre">HIGH</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.raw_value">
+<code class="descname">raw_value</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.raw_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The raw (uncalibrated) value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.reception_time">
+<code class="descname">reception_time</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.reception_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time when the parameter value was received by Yamcs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.validity_duration">
+<code class="descname">validity_duration</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.validity_duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>How long this parameter value is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">timedelta</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.tmtc.model.ParameterValue.validity_status">
+<code class="descname">validity_status</code><a class="headerlink" href="#yamcs.tmtc.model.ParameterValue.validity_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.tmtc.model.RangeSet">
+<em class="property">class </em><code class="descclassname">yamcs.tmtc.model.</code><code class="descname">RangeSet</code><span class="sig-paren">(</span><em>context</em>, <em>watch=None</em>, <em>warning=None</em>, <em>distress=None</em>, <em>critical=None</em>, <em>severe=None</em>, <em>min_violations=1</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.tmtc.model.RangeSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>A set of alarm range that apply in a specific context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Condition under which this range set is
+applicable. The value <code class="docutils literal notranslate"><span class="pre">None</span></code> indicates the
+default range set which is only applicable if
+no contextual sets match.</p></li>
+<li><p><strong>watch</strong> (<em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>)</em>) – Range expressed as a tuple <code class="docutils literal notranslate"><span class="pre">(lo,</span> <span class="pre">hi)</span></code>
+where lo and hi are assumed exclusive.</p></li>
+<li><p><strong>warning</strong> (<em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>)</em>) – Range expressed as a tuple <code class="docutils literal notranslate"><span class="pre">(lo,</span> <span class="pre">hi)</span></code>
+where lo and hi are assumed exclusive.</p></li>
+<li><p><strong>distress</strong> (<em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>)</em>) – Range expressed as a tuple <code class="docutils literal notranslate"><span class="pre">(lo,</span> <span class="pre">hi)</span></code>
+where lo and hi are assumed exclusive.</p></li>
+<li><p><strong>critical</strong> (<em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>)</em>) – Range expressed as a tuple <code class="docutils literal notranslate"><span class="pre">(lo,</span> <span class="pre">hi)</span></code>
+where lo and hi are assumed exclusive.</p></li>
+<li><p><strong>severe</strong> (<em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>,</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>)</em>) – Range expressed as a tuple <code class="docutils literal notranslate"><span class="pre">(lo,</span> <span class="pre">hi)</span></code>
+where lo and hi are assumed exclusive.</p></li>
+<li><p><strong>min_violations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Minimum violations before an alarm is
+generated.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">TM/TC Processing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">TM/TC Processing</a><ul>
+      <li>Previous: <a href="client.html" title="previous chapter">Client</a></li>
+      <li>Next: <a href="../archive/index.html" title="next chapter">Archive</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>TM/TC Processing &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Client" href="client.html" />
+    <link rel="prev" title="Model" href="../mdb/model.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tm-tc-processing">
+<h1>TM/TC Processing<a class="headerlink" href="#tm-tc-processing" title="Permalink to this headline">¶</a></h1>
+<p>The TM/TC API provides methods that you can use to programmatically interact
+with a TM/TC processor.</p>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">Model</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="snippets">
+<h2>Snippets<a class="headerlink" href="#snippets" title="Permalink to this headline">¶</a></h2>
+<p>Create a <a class="reference internal" href="client.html#yamcs.tmtc.client.ProcessorClient" title="yamcs.tmtc.client.ProcessorClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessorClient</span></code></a> for a specific processor:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yamcs.client</span> <span class="kn">import</span> <span class="n">YamcsClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">YamcsClient</span><span class="p">(</span><span class="s1">&#39;localhost:8090&#39;</span><span class="p">)</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_processor</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s1">&#39;simulator&#39;</span><span class="p">,</span> <span class="n">processor</span><span class="o">=</span><span class="s1">&#39;realtime&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="read-write-parameters">
+<h3>Read/Write Parameters<a class="headerlink" href="#read-write-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Read a single value. This returns the latest value from server cache.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pval</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">get_parameter_value</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pval</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Read a single value, but block until a fresh value could be processed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pval</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">get_parameter_value</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage2&#39;</span><span class="p">,</span>
+                                     <span class="n">from_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pval</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Read the latest value of multiple parameters at the same time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pvals</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">get_parameter_values</span><span class="p">([</span>
+    <span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage2&#39;</span><span class="p">,</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;battery1&#39;</span><span class="p">,</span> <span class="n">pvals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;battery2&#39;</span><span class="p">,</span> <span class="n">pvals</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Set the value of a parameter. Only some types of parameters can
+be written to. This includes software parameters (local to Yamcs)
+and parameters that are linked to an external system (such as
+a simulator).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">set_parameter_value</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/AllowCriticalTC1&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Set the value of multiple parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">processor</span><span class="o">.</span><span class="n">set_parameter_values</span><span class="p">({</span>
+    <span class="s1">&#39;/YSS/SIMULATOR/AllowCriticalTC1&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;/YSS/SIMULATOR/AllowCriticalTC2&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="parameter-subscription">
+<h3>Parameter Subscription<a class="headerlink" href="#parameter-subscription" title="Permalink to this headline">¶</a></h3>
+<p>Poll latest values from a subscription:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subscription</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">create_parameter_subscription</span><span class="p">([</span>
+    <span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage1&#39;</span>
+<span class="p">])</span>
+
+<span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latest value:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subscription</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage1&#39;</span><span class="p">))</span>
+
+<span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latest value:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subscription</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage1&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Receive <a class="reference internal" href="model.html#yamcs.tmtc.model.ParameterData" title="yamcs.tmtc.model.ParameterData"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParameterData</span></code></a> callbacks whenever one or more of the
+subscribed parameters have been updated:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+
+<span class="n">processor</span><span class="o">.</span><span class="n">create_parameter_subscription</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage1&#39;</span><span class="p">,</span>
+                                        <span class="n">on_data</span><span class="o">=</span><span class="n">print_data</span><span class="p">)</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Subscription is non-blocking</span>
+</pre></div>
+</div>
+<p>Create and modify a parameter subscription:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subscription</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">create_parameter_subscription</span><span class="p">([</span>
+    <span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage1&#39;</span>
+<span class="p">])</span>
+
+<span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Adding extra items to the existing subscription...&#39;</span><span class="p">)</span>
+<span class="n">subscription</span><span class="o">.</span><span class="n">add</span><span class="p">([</span>
+    <span class="s1">&#39;/YSS/SIMULATOR/Alpha&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;MDB:OPS Name/SIMULATOR_PrimBusVoltage1&#39;</span><span class="p">,</span>
+<span class="p">])</span>
+
+<span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shrinking subscription...&#39;</span><span class="p">)</span>
+<span class="n">subscription</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/Alpha&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cancelling the subscription...&#39;</span><span class="p">)</span>
+<span class="n">subscription</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Last values from cache:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subscription</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage1&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subscription</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/BatteryVoltage2&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subscription</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/Alpha&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subscription</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;MDB:OPS Name/SIMULATOR_PrimBusVoltage1&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="commanding">
+<h3>Commanding<a class="headerlink" href="#commanding" title="Permalink to this headline">¶</a></h3>
+<p>Issue a command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">issue_command</span><span class="p">(</span><span class="s1">&#39;/YSS/SIMULATOR/SWITCH_VOLTAGE_OFF&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;voltage_num&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">},</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;im a comment&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Issued&#39;</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Receive <a class="reference internal" href="model.html#yamcs.tmtc.model.CommandHistory" title="yamcs.tmtc.model.CommandHistory"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommandHistory</span></code></a> callbacks on command history events:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tc_callback</span><span class="p">(</span><span class="n">rec</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TC:&#39;</span><span class="p">,</span> <span class="n">rec</span><span class="p">)</span>
+
+<span class="n">processor</span><span class="o">.</span><span class="n">create_command_history_subscription</span><span class="p">(</span><span class="n">on_data</span><span class="o">=</span><span class="n">tc_callback</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="alarm-monitoring">
+<h3>Alarm Monitoring<a class="headerlink" href="#alarm-monitoring" title="Permalink to this headline">¶</a></h3>
+<p>Receive <a class="reference internal" href="model.html#yamcs.tmtc.model.AlarmUpdate" title="yamcs.tmtc.model.AlarmUpdate"><code class="xref py py-class docutils literal notranslate"><span class="pre">AlarmUpdate</span></code></a> callbacks:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">alarm_update</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Alarm Update:&#39;</span><span class="p">,</span> <span class="n">alarm_update</span><span class="p">)</span>
+
+<span class="n">processor</span><span class="o">.</span><span class="n">create_alarm_subscription</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Acknowledge all active alarms:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">alarm</span> <span class="ow">in</span> <span class="n">processor</span><span class="o">.</span><span class="n">list_alarms</span><span class="p">():</span>
+    <span class="n">processor</span><span class="o">.</span><span class="n">acknowledge_alarm</span><span class="p">(</span><span class="n">alarm</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s1">&#39;false alarm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TM/TC Processing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../mdb/model.html" title="previous chapter">Model</a></li>
+      <li>Next: <a href="client.html" title="next chapter">Client</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

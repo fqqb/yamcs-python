@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Authentication &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Exceptions" href="exceptions.html" />
+    <link rel="prev" title="Model" href="model.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="authentication">
+<h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="user-accounts">
+<h2>User Accounts<a class="headerlink" href="#user-accounts" title="Permalink to this headline">¶</a></h2>
+<p>Yamcs Server can be configured for different authentication setups.</p>
+<p>The common use case is to entrust Yamcs with validating user credentials
+(either by locally verifying passwords, or by delegating to an upstream
+server such as an LDAP tree).</p>
+<p>To authenticate in such a scenario simply do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">YamcsClient</span><span class="p">(</span><span class="s1">&#39;localhost:8090&#39;</span><span class="p">,</span> <span class="n">credentials</span><span class="o">=</span><span class="n">credentials</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the background this will convert your username/password credentials
+to an access token with limited lifetime, and a long-lived refresh token
+for automatically generating new access tokens.</p>
+<p>Further HTTP requests do not use your username/password but instead use
+these tokens.</p>
+</div>
+<div class="section" id="service-accounts">
+<h2>Service Accounts<a class="headerlink" href="#service-accounts" title="Permalink to this headline">¶</a></h2>
+<p>Service accounts are useful in server-to-server scenarios. Support for service
+accounts will be available in future releases.</p>
+</div>
+<div class="section" id="module-yamcs.core.auth">
+<span id="types"></span><h2>Types<a class="headerlink" href="#module-yamcs.core.auth" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="yamcs.core.auth.Credentials">
+<em class="property">class </em><code class="descclassname">yamcs.core.auth.</code><code class="descname">Credentials</code><span class="sig-paren">(</span><em>username=None</em>, <em>password=None</em>, <em>access_token=None</em>, <em>refresh_token=None</em>, <em>expiry=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.auth.Credentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Data holder for different types of credentials. Currently this includes:</p>
+<ul class="simple">
+<li><p>Username/password credentials (fields <code class="docutils literal notranslate"><span class="pre">username</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code>)</p></li>
+<li><p>Bearer tokens (fields <code class="docutils literal notranslate"><span class="pre">access_token</span></code> and optionally <code class="docutils literal notranslate"><span class="pre">refresh_token</span></code>)</p></li>
+</ul>
+<dl class="attribute">
+<dt id="yamcs.core.auth.Credentials.access_token">
+<code class="descname">access_token</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.core.auth.Credentials.access_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short-lived bearer token.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.core.auth.Credentials.expiry">
+<code class="descname">expiry</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.core.auth.Credentials.expiry" title="Permalink to this definition">¶</a></dt>
+<dd><p>When this token expires.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.auth.Credentials.is_expired">
+<code class="descname">is_expired</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.auth.Credentials.is_expired" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.core.auth.Credentials.password">
+<code class="descname">password</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.core.auth.Credentials.password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear-text password (consider TLS!).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.core.auth.Credentials.refresh_token">
+<code class="descname">refresh_token</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.core.auth.Credentials.refresh_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refresh token used to request a new access token (WIP)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.core.auth.Credentials.username">
+<code class="descname">username</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.core.auth.Credentials.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Username (only needed when using username/password credentials).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">General Client</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="client.html">YamcsClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="futures.html">Futures</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">General Client</a><ul>
+      <li>Previous: <a href="model.html" title="previous chapter">Model</a></li>
+      <li>Next: <a href="exceptions.html" title="next chapter">Exceptions</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Model &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Object Storage" href="../storage/index.html" />
+    <link rel="prev" title="Client" href="client.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-yamcs.archive.model">
+<span id="model"></span><h1>Model<a class="headerlink" href="#module-yamcs.archive.model" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="yamcs.archive.model.ColumnData">
+<em class="property">class </em><code class="descclassname">yamcs.archive.model.</code><code class="descname">ColumnData</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.model.ColumnData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.archive.model.ColumnData.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.archive.model.ColumnData.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column name.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.ColumnData.value">
+<code class="descname">value</code><a class="headerlink" href="#yamcs.archive.model.ColumnData.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value for this column.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.archive.model.IndexGroup">
+<em class="property">class </em><code class="descclassname">yamcs.archive.model.</code><code class="descname">IndexGroup</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.model.IndexGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Group of index records that represent the same
+type of underlying objects.</p>
+<dl class="attribute">
+<dt id="yamcs.archive.model.IndexGroup.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.archive.model.IndexGroup.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name associated with this group. The meaning is defined
+by the objects represented by this index. For example:</p>
+<ul class="simple">
+<li><p>In an index of events, index records are grouped by <code class="docutils literal notranslate"><span class="pre">source</span></code>.</p></li>
+<li><p>In an index of packets, index records are grouped by <code class="docutils literal notranslate"><span class="pre">packet</span> <span class="pre">name</span></code>.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.IndexGroup.records">
+<code class="descname">records</code><a class="headerlink" href="#yamcs.archive.model.IndexGroup.records" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index records within this group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#yamcs.archive.model.IndexRecord" title="yamcs.archive.model.IndexRecord"><code class="xref py py-class docutils literal notranslate"><span class="pre">IndexRecord</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.archive.model.IndexRecord">
+<em class="property">class </em><code class="descclassname">yamcs.archive.model.</code><code class="descname">IndexRecord</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.model.IndexRecord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a block of uninterrupted data (derived from the index definition
+for the type of underlying objects, in combination with the requested
+<code class="docutils literal notranslate"><span class="pre">merge_time</span></code>.</p>
+<dl class="attribute">
+<dt id="yamcs.archive.model.IndexRecord.count">
+<code class="descname">count</code><a class="headerlink" href="#yamcs.archive.model.IndexRecord.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of underlying objects this index record represents</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.IndexRecord.start">
+<code class="descname">start</code><a class="headerlink" href="#yamcs.archive.model.IndexRecord.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start time of the record</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.IndexRecord.stop">
+<code class="descname">stop</code><a class="headerlink" href="#yamcs.archive.model.IndexRecord.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop time of the record</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.archive.model.Packet">
+<em class="property">class </em><code class="descclassname">yamcs.archive.model.</code><code class="descname">Packet</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.model.Packet" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.archive.model.Packet.binary">
+<code class="descname">binary</code><a class="headerlink" href="#yamcs.archive.model.Packet.binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raw binary of this packet</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.Packet.generation_time">
+<code class="descname">generation_time</code><a class="headerlink" href="#yamcs.archive.model.Packet.generation_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time when the packet was generated (packet time).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.Packet.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.archive.model.Packet.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the packet. When using XTCE extraction this is the
+fully-qualified name of the first container in the hierarchy that
+this packet maps to.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.Packet.reception_time">
+<code class="descname">reception_time</code><a class="headerlink" href="#yamcs.archive.model.Packet.reception_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time when the packet was received by Yamcs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.Packet.sequence_number">
+<code class="descname">sequence_number</code><a class="headerlink" href="#yamcs.archive.model.Packet.sequence_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>The sequence number of the packet. This is usually decoded from
+the packet.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.archive.model.ParameterRange">
+<em class="property">class </em><code class="descclassname">yamcs.archive.model.</code><code class="descname">ParameterRange</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.model.ParameterRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates an interval during which a parameter’s
+value was uninterrupted and unchanged.</p>
+<dl class="attribute">
+<dt id="yamcs.archive.model.ParameterRange.eng_value">
+<code class="descname">eng_value</code><a class="headerlink" href="#yamcs.archive.model.ParameterRange.eng_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The engineering (calibrated) value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.ParameterRange.parameter_count">
+<code class="descname">parameter_count</code><a class="headerlink" href="#yamcs.archive.model.ParameterRange.parameter_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of received parameter values during this range.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.ParameterRange.start">
+<code class="descname">start</code><a class="headerlink" href="#yamcs.archive.model.ParameterRange.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start time of this range (inclusive).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.ParameterRange.stop">
+<code class="descname">stop</code><a class="headerlink" href="#yamcs.archive.model.ParameterRange.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop time of this range (exclusive).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.archive.model.Sample">
+<em class="property">class </em><code class="descclassname">yamcs.archive.model.</code><code class="descname">Sample</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.model.Sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides aggregation properties over a range of a parameter’s
+values.</p>
+<dl class="attribute">
+<dt id="yamcs.archive.model.Sample.avg">
+<code class="descname">avg</code><a class="headerlink" href="#yamcs.archive.model.Sample.avg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Average value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.Sample.max">
+<code class="descname">max</code><a class="headerlink" href="#yamcs.archive.model.Sample.max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.Sample.min">
+<code class="descname">min</code><a class="headerlink" href="#yamcs.archive.model.Sample.min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.Sample.parameter_count">
+<code class="descname">parameter_count</code><a class="headerlink" href="#yamcs.archive.model.Sample.parameter_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of parameter values this sample represents.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.Sample.time">
+<code class="descname">time</code><a class="headerlink" href="#yamcs.archive.model.Sample.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.archive.model.Stream">
+<em class="property">class </em><code class="descclassname">yamcs.archive.model.</code><code class="descname">Stream</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.model.Stream" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.archive.model.Stream.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.archive.model.Stream.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stream name.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.archive.model.StreamData">
+<em class="property">class </em><code class="descclassname">yamcs.archive.model.</code><code class="descname">StreamData</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.model.StreamData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.archive.model.StreamData.columns">
+<code class="descname">columns</code><a class="headerlink" href="#yamcs.archive.model.StreamData.columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tuple columns.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.archive.model.StreamData.stream">
+<code class="descname">stream</code><a class="headerlink" href="#yamcs.archive.model.StreamData.stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stream name.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.archive.model.Table">
+<em class="property">class </em><code class="descclassname">yamcs.archive.model.</code><code class="descname">Table</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.model.Table" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="yamcs.archive.model.Table.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.archive.model.Table.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Table name.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Archive</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Archive</a><ul>
+      <li>Previous: <a href="client.html" title="previous chapter">Client</a></li>
+      <li>Next: <a href="../storage/index.html" title="next chapter">Object Storage</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

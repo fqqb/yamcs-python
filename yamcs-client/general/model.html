@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Model &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Authentication" href="authentication.html" />
+    <link rel="prev" title="YamcsClient" href="client.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-yamcs.model">
+<span id="model"></span><h1>Model<a class="headerlink" href="#module-yamcs.model" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="yamcs.model.AuthInfo">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">AuthInfo</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.AuthInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Authentication information</p>
+<dl class="attribute">
+<dt id="yamcs.model.AuthInfo.require_authentication">
+<code class="descname">require_authentication</code><a class="headerlink" href="#yamcs.model.AuthInfo.require_authentication" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.Client">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">Client</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A user session.</p>
+<dl class="attribute">
+<dt id="yamcs.model.Client.application_name">
+<code class="descname">application_name</code><a class="headerlink" href="#yamcs.model.Client.application_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Application name (user agent).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Client.id">
+<code class="descname">id</code><a class="headerlink" href="#yamcs.model.Client.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Session ID.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Client.login_time">
+<code class="descname">login_time</code><a class="headerlink" href="#yamcs.model.Client.login_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time when this session started.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Client.username">
+<code class="descname">username</code><a class="headerlink" href="#yamcs.model.Client.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Username associated with this session.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.Event">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">Event</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A timetagged free-text message. Events work a lot like log
+messages in logging frameworks, but then targeted at operators.</p>
+<dl class="attribute">
+<dt id="yamcs.model.Event.event_type">
+<code class="descname">event_type</code><a class="headerlink" href="#yamcs.model.Event.event_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event type. This is mission-specific and can be any string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Event.generation_time">
+<code class="descname">generation_time</code><a class="headerlink" href="#yamcs.model.Event.generation_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time when the event was generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Event.message">
+<code class="descname">message</code><a class="headerlink" href="#yamcs.model.Event.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Event message.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Event.reception_time">
+<code class="descname">reception_time</code><a class="headerlink" href="#yamcs.model.Event.reception_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The time when the event was received by Yamcs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Event.sequence_number">
+<code class="descname">sequence_number</code><a class="headerlink" href="#yamcs.model.Event.sequence_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sequence number. Usually this is assigned by the source of the event.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Event.severity">
+<code class="descname">severity</code><a class="headerlink" href="#yamcs.model.Event.severity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Severity level of the event. One of <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">WATCH</span></code>,
+<code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">DISTRESS</span></code>, <code class="docutils literal notranslate"><span class="pre">CRITICAL</span></code> or <code class="docutils literal notranslate"><span class="pre">SEVERE</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Event.source">
+<code class="descname">source</code><a class="headerlink" href="#yamcs.model.Event.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>The event source. Can be any string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.Instance">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">Instance</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.Instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="yamcs.model.Instance.failure_cause">
+<code class="descname">failure_cause</code><a class="headerlink" href="#yamcs.model.Instance.failure_cause" title="Permalink to this definition">¶</a></dt>
+<dd><p>Failure message when <code class="docutils literal notranslate"><span class="pre">state</span> <span class="pre">==</span> <span class="pre">'FAILED'</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Instance.mission_time">
+<code class="descname">mission_time</code><a class="headerlink" href="#yamcs.model.Instance.mission_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission time of this instance’s time service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Instance.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.model.Instance.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Instance.state">
+<code class="descname">state</code><a class="headerlink" href="#yamcs.model.Instance.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>State of this instance. One of <code class="docutils literal notranslate"><span class="pre">OFFLINE</span></code>, <code class="docutils literal notranslate"><span class="pre">INITIALIZING</span></code>,
+<code class="docutils literal notranslate"><span class="pre">INITIALIZED</span></code>, <code class="docutils literal notranslate"><span class="pre">STARTING</span></code>, <code class="docutils literal notranslate"><span class="pre">RUNNING</span></code>, <code class="docutils literal notranslate"><span class="pre">STOPPING</span></code> or
+<code class="docutils literal notranslate"><span class="pre">FAILED</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.InstanceTemplate">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">InstanceTemplate</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.InstanceTemplate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A template for creating an instance.</p>
+<dl class="attribute">
+<dt id="yamcs.model.InstanceTemplate.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.model.InstanceTemplate.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this template.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.Link">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">Link</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.Link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represents a link with an external system. Depending on the
+semantics of the link, this may imply inbound data, outbound
+data or a combination of both.</p>
+<dl class="attribute">
+<dt id="yamcs.model.Link.class_name">
+<code class="descname">class_name</code><a class="headerlink" href="#yamcs.model.Link.class_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this link’s class.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Link.enabled">
+<code class="descname">enabled</code><a class="headerlink" href="#yamcs.model.Link.enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, this link accepts or outputs data.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Link.in_count">
+<code class="descname">in_count</code><a class="headerlink" href="#yamcs.model.Link.in_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of inbound data events (example: packet count).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Link.instance">
+<code class="descname">instance</code><a class="headerlink" href="#yamcs.model.Link.instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the instance where this link is defined.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Link.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.model.Link.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this link (unique per instance).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Link.out_count">
+<code class="descname">out_count</code><a class="headerlink" href="#yamcs.model.Link.out_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of outbound data events (example: command count).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Link.status">
+<code class="descname">status</code><a class="headerlink" href="#yamcs.model.Link.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Short status.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.LinkEvent">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">LinkEvent</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.LinkEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Data holder used in link subscriptions.</p>
+<dl class="attribute">
+<dt id="yamcs.model.LinkEvent.event_type">
+<code class="descname">event_type</code><a class="headerlink" href="#yamcs.model.LinkEvent.event_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of the event. One of <code class="docutils literal notranslate"><span class="pre">REGISTERED</span></code>, <code class="docutils literal notranslate"><span class="pre">UNREGISTERED</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">UPDATED</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.LinkEvent.link">
+<code class="descname">link</code><a class="headerlink" href="#yamcs.model.LinkEvent.link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link state at the time of this event.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#yamcs.model.Link" title="yamcs.model.Link"><code class="xref py py-class docutils literal notranslate"><span class="pre">Link</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.ObjectPrivilege">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">ObjectPrivilege</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.ObjectPrivilege" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="yamcs.model.ObjectPrivilege.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.model.ObjectPrivilege.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.ObjectPrivilege.objects">
+<code class="descname">objects</code><a class="headerlink" href="#yamcs.model.ObjectPrivilege.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.Processor">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">Processor</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.Processor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="yamcs.model.Processor.instance">
+<code class="descname">instance</code><a class="headerlink" href="#yamcs.model.Processor.instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the instance where this processor is defined.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Processor.mission_time">
+<code class="descname">mission_time</code><a class="headerlink" href="#yamcs.model.Processor.mission_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mission time of this processor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Processor.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.model.Processor.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this processor.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Processor.owner">
+<code class="descname">owner</code><a class="headerlink" href="#yamcs.model.Processor.owner" title="Permalink to this definition">¶</a></dt>
+<dd><p>User that owns this processor.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Processor.persistent">
+<code class="descname">persistent</code><a class="headerlink" href="#yamcs.model.Processor.persistent" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, this processor does not close if no clients are connected.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Processor.state">
+<code class="descname">state</code><a class="headerlink" href="#yamcs.model.Processor.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>State of this processor.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Processor.type">
+<code class="descname">type</code><a class="headerlink" href="#yamcs.model.Processor.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of this processor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.ServerInfo">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">ServerInfo</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.ServerInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>General server properties.</p>
+<dl class="attribute">
+<dt id="yamcs.model.ServerInfo.default_yamcs_instance">
+<code class="descname">default_yamcs_instance</code><a class="headerlink" href="#yamcs.model.ServerInfo.default_yamcs_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the default Yamcs instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.ServerInfo.id">
+<code class="descname">id</code><a class="headerlink" href="#yamcs.model.ServerInfo.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Server ID.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.ServerInfo.version">
+<code class="descname">version</code><a class="headerlink" href="#yamcs.model.ServerInfo.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>The version of Yamcs Server.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.Service">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">Service</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.Service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A Yamcs service.</p>
+<dl class="attribute">
+<dt id="yamcs.model.Service.class_name">
+<code class="descname">class_name</code><a class="headerlink" href="#yamcs.model.Service.class_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this service’s class.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Service.instance">
+<code class="descname">instance</code><a class="headerlink" href="#yamcs.model.Service.instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the instance where this service is defined.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Service.name">
+<code class="descname">name</code><a class="headerlink" href="#yamcs.model.Service.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of this service.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Service.processor">
+<code class="descname">processor</code><a class="headerlink" href="#yamcs.model.Service.processor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the processor where this service is defined.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.Service.state">
+<code class="descname">state</code><a class="headerlink" href="#yamcs.model.Service.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>State of this service.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.model.UserInfo">
+<em class="property">class </em><code class="descclassname">yamcs.model.</code><code class="descname">UserInfo</code><span class="sig-paren">(</span><em>proto</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.model.UserInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Info on a Yamcs User.</p>
+<dl class="attribute">
+<dt id="yamcs.model.UserInfo.clients">
+<code class="descname">clients</code><a class="headerlink" href="#yamcs.model.UserInfo.clients" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.UserInfo.object_privileges">
+<code class="descname">object_privileges</code><a class="headerlink" href="#yamcs.model.UserInfo.object_privileges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.UserInfo.superuser">
+<code class="descname">superuser</code><a class="headerlink" href="#yamcs.model.UserInfo.superuser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.UserInfo.system_privileges">
+<code class="descname">system_privileges</code><a class="headerlink" href="#yamcs.model.UserInfo.system_privileges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="yamcs.model.UserInfo.username">
+<code class="descname">username</code><a class="headerlink" href="#yamcs.model.UserInfo.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">General Client</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="client.html">YamcsClient</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="futures.html">Futures</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">General Client</a><ul>
+      <li>Previous: <a href="client.html" title="previous chapter">YamcsClient</a></li>
+      <li>Next: <a href="authentication.html" title="next chapter">Authentication</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

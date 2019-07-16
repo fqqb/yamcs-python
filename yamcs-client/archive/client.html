@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Client &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model" href="model.html" />
+    <link rel="prev" title="Archive" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="client">
+<h1>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">ArchiveClient</span></code> instances are usually created via
+<a class="reference internal" href="../general/client.html#yamcs.client.YamcsClient.get_archive" title="yamcs.client.YamcsClient.get_archive"><code class="xref py py-func docutils literal notranslate"><span class="pre">YamcsClient.get_archive()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yamcs.client</span> <span class="kn">import</span> <span class="n">YamcsClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">YamcsClient</span><span class="p">(</span><span class="s1">&#39;localhost:8090&#39;</span><span class="p">)</span>
+<span class="n">archive</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_archive</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s1">&#39;simulator&#39;</span><span class="p">)</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+<dl class="class">
+<dt id="yamcs.archive.client.ArchiveClient">
+<em class="property">class </em><code class="descclassname">yamcs.archive.client.</code><code class="descname">ArchiveClient</code><span class="sig-paren">(</span><em>client</em>, <em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.create_stream_subscription">
+<code class="descname">create_stream_subscription</code><span class="sig-paren">(</span><em>stream</em>, <em>on_data</em>, <em>timeout=60</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.create_stream_subscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new stream subscription.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stream</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the stream.</p></li>
+<li><p><strong>on_data</strong> – Function that gets called with  <a class="reference internal" href="model.html#yamcs.archive.model.StreamData" title="yamcs.archive.model.StreamData"><code class="xref py py-class docutils literal notranslate"><span class="pre">StreamData</span></code></a>
+updates.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The amount of seconds to wait for the request
+to complete.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Future that can be used to manage the background websocket
+subscription</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../general/futures.html#yamcs.core.futures.WebSocketSubscriptionFuture" title="yamcs.core.futures.WebSocketSubscriptionFuture">WebSocketSubscriptionFuture</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.dump_table">
+<code class="descname">dump_table</code><span class="sig-paren">(</span><em>table</em>, <em>chunk_size=1024</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.dump_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.execute_sql">
+<code class="descname">execute_sql</code><span class="sig-paren">(</span><em>statement</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.execute_sql" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes a single SQL statement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>statement</strong> – SQL string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>String response</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.get_packet">
+<code class="descname">get_packet</code><span class="sig-paren">(</span><em>generation_time</em>, <em>sequence_number</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.get_packet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single packet by its identifying key (gentime, seqNum).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generation_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – When the packet was generated (packet time)</p></li>
+<li><p><strong>sequence_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Sequence number of the packet</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.archive.model.Packet" title="yamcs.archive.model.Packet">Packet</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.get_stream">
+<code class="descname">get_stream</code><span class="sig-paren">(</span><em>stream</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.get_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single stream.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stream</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the stream.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.archive.model.Stream" title="yamcs.archive.model.Stream">Stream</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.get_table">
+<code class="descname">get_table</code><span class="sig-paren">(</span><em>table</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.get_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>table</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the table.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.archive.model.Table" title="yamcs.archive.model.Table">Table</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_command_histogram">
+<code class="descname">list_command_histogram</code><span class="sig-paren">(</span><em>name=None</em>, <em>start=None</em>, <em>stop=None</em>, <em>merge_time=2</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_command_histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads command-related index records between the specified start and stop
+time.</p>
+<p>Each iteration returns a chunk of chronologically-sorted records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>merge_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum gap in seconds before two consecutive index records are merged together.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="model.html#yamcs.archive.model.IndexGroup" title="yamcs.archive.model.IndexGroup">IndexGroup</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_command_history">
+<code class="descname">list_command_history</code><span class="sig-paren">(</span><em>command=None</em>, <em>start=None</em>, <em>stop=None</em>, <em>page_size=500</em>, <em>descending=False</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_command_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads command history entries between the specified start and stop time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>command</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Either a fully-qualified XTCE name or an alias in the
+format <code class="docutils literal notranslate"><span class="pre">NAMESPACE/NAME</span></code>.</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Minimum generation time of the returned
+command history entries (inclusive)</p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Maximum generation time of the returned
+command history entries (exclusive)</p></li>
+<li><p><strong>page_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Page size of underlying requests. Higher values imply
+less overhead, but risk hitting the maximum message size limit.</p></li>
+<li><p><strong>descending</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If set to <code class="docutils literal notranslate"><span class="pre">True</span></code> results are fetched in reverse
+order (most recent first).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="../tmtc/model.html#yamcs.tmtc.model.CommandHistory" title="yamcs.tmtc.model.CommandHistory">CommandHistory</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_completeness_index">
+<code class="descname">list_completeness_index</code><span class="sig-paren">(</span><em>start=None</em>, <em>stop=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_completeness_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads completeness index records between the specified start and stop
+time.</p>
+<p>Each iteration returns a chunk of chronologically-sorted records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Iterable[<a class="reference internal" href="model.html#yamcs.archive.model.IndexGroup" title="yamcs.archive.model.IndexGroup">IndexGroup</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_event_histogram">
+<code class="descname">list_event_histogram</code><span class="sig-paren">(</span><em>source=None</em>, <em>start=None</em>, <em>stop=None</em>, <em>merge_time=2</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_event_histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads event-related index records between the specified start and stop
+time.</p>
+<p>Each iteration returns a chunk of chronologically-sorted records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>merge_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum gap in seconds before two consecutive index records are merged together.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="model.html#yamcs.archive.model.IndexGroup" title="yamcs.archive.model.IndexGroup">IndexGroup</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_event_sources">
+<code class="descname">list_event_sources</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_event_sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the existing event sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Iterable[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_events">
+<code class="descname">list_events</code><span class="sig-paren">(</span><em>source=None</em>, <em>severity=None</em>, <em>text_filter=None</em>, <em>start=None</em>, <em>stop=None</em>, <em>page_size=500</em>, <em>descending=False</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads events between the specified start and stop time.</p>
+<p>Events are sorted by generation time, source, then sequence number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The source of the returned events.</p></li>
+<li><p><strong>severity</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The minimum severity level of the returned events.
+One of <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">WATCH</span></code>, <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">DISTRESS</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CRITICAL</span></code> or <code class="docutils literal notranslate"><span class="pre">SEVERE</span></code>.</p></li>
+<li><p><strong>text_filter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Filter the text message of the returned events</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Minimum start date of the returned events (inclusive)</p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Maximum start date of the returned events (exclusive)</p></li>
+<li><p><strong>page_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Page size of underlying requests. Higher values imply
+less overhead, but risk hitting the maximum message size limit.</p></li>
+<li><p><strong>descending</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If set to <code class="docutils literal notranslate"><span class="pre">True</span></code> events are fetched in reverse
+order (most recent first).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="../general/model.html#yamcs.model.Event" title="yamcs.model.Event">Event</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_packet_histogram">
+<code class="descname">list_packet_histogram</code><span class="sig-paren">(</span><em>name=None</em>, <em>start=None</em>, <em>stop=None</em>, <em>merge_time=2</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_packet_histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads packet-related index records between the specified start and stop
+time.</p>
+<p>Each iteration returns a chunk of chronologically-sorted records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>merge_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum gap in seconds before two consecutive index records are merged together.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="model.html#yamcs.archive.model.IndexGroup" title="yamcs.archive.model.IndexGroup">IndexGroup</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_packet_names">
+<code class="descname">list_packet_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_packet_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the existing packet names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Iterable[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_packets">
+<code class="descname">list_packets</code><span class="sig-paren">(</span><em>name=None</em>, <em>start=None</em>, <em>stop=None</em>, <em>page_size=500</em>, <em>descending=False</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_packets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads packet information between the specified start and stop
+time.</p>
+<p>Packets are sorted by generation time and sequence number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Minimum generation time of the returned
+packets (inclusive)</p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Maximum genreation time of the returned
+packets (exclusive)</p></li>
+<li><p><strong>page_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Page size of underlying requests. Higher values imply
+less overhead, but risk hitting the maximum message size limit.</p></li>
+<li><p><strong>descending</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If set to <code class="docutils literal notranslate"><span class="pre">True</span></code> packets are fetched in reverse
+order (most recent first).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="model.html#yamcs.archive.model.Packet" title="yamcs.archive.model.Packet">Packet</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_parameter_ranges">
+<code class="descname">list_parameter_ranges</code><span class="sig-paren">(</span><em>parameter</em>, <em>start=None</em>, <em>stop=None</em>, <em>min_gap=None</em>, <em>max_gap=None</em>, <em>parameter_cache='realtime'</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_parameter_ranges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns parameter ranges between the specified start and stop time.</p>
+<p>Each range indicates an interval during which this parameter’s
+value was uninterrupted and unchanged.</p>
+<p>Ranges are a good fit for retrieving the value of a parameter
+that does not change frequently. For example an on/off indicator
+or some operational status. Querying ranges will then induce
+much less overhead than manually processing the output of
+<a class="reference internal" href="#yamcs.archive.client.ArchiveClient.list_parameter_values" title="yamcs.archive.client.ArchiveClient.list_parameter_values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">list_parameter_values()</span></code></a> would.</p>
+<p>The maximum number of returned ranges is limited to 500.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Either a fully-qualified XTCE name or an alias in the
+format <code class="docutils literal notranslate"><span class="pre">NAMESPACE/NAME</span></code>.</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Minimum generation time of the considered
+values (inclusive)</p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Maximum generation time of the considered
+values (exclusive)</p></li>
+<li><p><strong>min_gap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time in seconds. Any gap (detected based on parameter
+expiration) smaller than this will be ignored.
+However if the parameter changes value, the ranges
+will still be split.</p></li>
+<li><p><strong>max_gap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time in seconds. If the distance between two
+subsequent parameter values is bigger than
+this value (but smaller than the parameter
+expiration), then an artificial gap is
+created. This also applies if there is no
+expiration defined for the parameter.</p></li>
+<li><p><strong>parameter_cache</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Specify the name of the processor who’s
+parameter cache is merged with already
+archived values. To disable results from
+the parameter cache, set this to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.archive.model.ParameterRange" title="yamcs.archive.model.ParameterRange">ParameterRange</a>[]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_parameter_values">
+<code class="descname">list_parameter_values</code><span class="sig-paren">(</span><em>parameter</em>, <em>start=None</em>, <em>stop=None</em>, <em>page_size=500</em>, <em>descending=False</em>, <em>parameter_cache='realtime'</em>, <em>source='ParameterArchive'</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_parameter_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads parameter values between the specified start and stop time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Either a fully-qualified XTCE name or an alias in the
+format <code class="docutils literal notranslate"><span class="pre">NAMESPACE/NAME</span></code>.</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Minimum generation time of the returned
+values (inclusive)</p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Maximum generation time of the returned
+values (exclusive)</p></li>
+<li><p><strong>page_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Page size of underlying requests. Higher values imply
+less overhead, but risk hitting the maximum message size limit.</p></li>
+<li><p><strong>descending</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If set to <code class="docutils literal notranslate"><span class="pre">True</span></code> values are fetched in reverse
+order (most recent first).</p></li>
+<li><p><strong>parameter_cache</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Specify the name of the processor who’s
+parameter cache is merged with already
+archived values. To disable results from
+the parameter cache, set this to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Specify how to retrieve parameter values. By
+default this uses the <code class="docutils literal notranslate"><span class="pre">ParameterArchive</span></code> which
+is optimized for retrieval. For Yamcs instances
+that do not enable the <code class="docutils literal notranslate"><span class="pre">ParameterArchive</span></code>, you can
+still get results by specifying <code class="docutils literal notranslate"><span class="pre">replay</span></code> as the
+source. Replay requests take longer to return because
+the data needs to be reprocessed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="../tmtc/model.html#yamcs.tmtc.model.ParameterValue" title="yamcs.tmtc.model.ParameterValue">ParameterValue</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_processed_parameter_group_histogram">
+<code class="descname">list_processed_parameter_group_histogram</code><span class="sig-paren">(</span><em>group=None</em>, <em>start=None</em>, <em>stop=None</em>, <em>merge_time=20</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_processed_parameter_group_histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads index records related to processed parameter groups between the
+specified start and stop time.</p>
+<p>Each iteration returns a chunk of chronologically-sorted records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>merge_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum gap in seconds before two consecutive index records are merged together.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="model.html#yamcs.archive.model.IndexGroup" title="yamcs.archive.model.IndexGroup">IndexGroup</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_processed_parameter_groups">
+<code class="descname">list_processed_parameter_groups</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_processed_parameter_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the existing parameter groups.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Iterable[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_streams">
+<code class="descname">list_streams</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_streams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the existing streams.</p>
+<p>Streams are returned in lexicographical order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Iterable[<a class="reference internal" href="model.html#yamcs.archive.model.Stream" title="yamcs.archive.model.Stream">Stream</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.list_tables">
+<code class="descname">list_tables</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.list_tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the existing tables.</p>
+<p>Tables are returned in lexicographical order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Iterable[<a class="reference internal" href="model.html#yamcs.archive.model.Table" title="yamcs.archive.model.Table">Table</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.load_table">
+<code class="descname">load_table</code><span class="sig-paren">(</span><em>table</em>, <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.load_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="yamcs.archive.client.ArchiveClient.sample_parameter_values">
+<code class="descname">sample_parameter_values</code><span class="sig-paren">(</span><em>parameter</em>, <em>start=None</em>, <em>stop=None</em>, <em>sample_count=500</em>, <em>parameter_cache='realtime'</em>, <em>source='ParameterArchive'</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.archive.client.ArchiveClient.sample_parameter_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns parameter samples.</p>
+<p>The query range is split in sample intervals of equal length. For
+each interval a <a class="reference internal" href="model.html#yamcs.archive.model.Sample" title="yamcs.archive.model.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a> is returned which describes the
+min, max, count and avg during that interval.</p>
+<p>Note that sample times are determined without considering the
+actual parameter values. Two separate queries with equal start/stop
+arguments will always return the same number of samples with the
+same timestamps. This is done to ease merging of multiple sample
+series. You should always be explicit about the <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">stop</span></code>
+times when relying on this property.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Either a fully-qualified XTCE name or an alias in the
+format <code class="docutils literal notranslate"><span class="pre">NAMESPACE/NAME</span></code>.</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Minimum generation time of the sampled
+parameter values (inclusive). If not set
+this defaults to one hour ago.</p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a>) – Maximum generation time of the sampled
+parameter values (exclusive). If not set
+this defaults to the current time.</p></li>
+<li><p><strong>sample_count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The number of returned samples.</p></li>
+<li><p><strong>parameter_cache</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Specify the name of the processor who’s
+parameter cache is merged with already
+archived values. To disable results from
+the parameter cache, set this to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>source</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Specify how to retrieve parameter values. By
+default this uses the <code class="docutils literal notranslate"><span class="pre">ParameterArchive</span></code> which
+is optimized for retrieval. For Yamcs instances
+that do not enable the <code class="docutils literal notranslate"><span class="pre">ParameterArchive</span></code>, you can
+still get results by specifying <code class="docutils literal notranslate"><span class="pre">replay</span></code> as the
+source. Replay requests take longer to return because
+the data needs to be reprocessed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.archive.model.Sample" title="yamcs.archive.model.Sample">Sample</a>[]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Archive</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Archive</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Archive</a></li>
+      <li>Next: <a href="model.html" title="next chapter">Model</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

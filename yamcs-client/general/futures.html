@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Futures &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mission Database" href="../mdb/index.html" />
+    <link rel="prev" title="Exceptions" href="exceptions.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-yamcs.core.futures">
+<span id="futures"></span><h1>Futures<a class="headerlink" href="#module-yamcs.core.futures" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="yamcs.core.futures.Future">
+<em class="property">class </em><code class="descclassname">yamcs.core.futures.</code><code class="descname">Future</code><a class="headerlink" href="#yamcs.core.futures.Future" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Future for capturing asynchronous execution.</p>
+<p>This interface is based on <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Future" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">concurrent.futures.Future</span></code></a> available in Python 3 (not
+in Python 2).</p>
+<dl class="method">
+<dt id="yamcs.core.futures.Future.add_done_callback">
+<code class="descname">add_done_callback</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.Future.add_done_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches the callable fn to the future. fn will be called, with the future
+as its only argument, when the future is cancelled or finishes running.</p>
+<p>Added callables are called in the order that they were added and are always
+called in a thread belonging to the process that added them. If the
+callable raises an Exception subclass, it will be logged and ignored. If
+the callable raises a BaseException subclass, the behavior is undefined.</p>
+<p>If the future has already completed or been cancelled, fn will be called
+immediately.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.Future.cancel">
+<code class="descname">cancel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.Future.cancel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempt to cancel the call. If the call is currently being executed and
+cannot be cancelled then the method will return False, otherwise the call
+will be cancelled and the method will return True.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.Future.cancelled">
+<code class="descname">cancelled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.Future.cancelled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the call was successfully cancelled.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.Future.done">
+<code class="descname">done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.Future.done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the call was successfully cancelled or finished running.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.Future.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.Future.exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the exception raised by the call. If the call hasn’t yet completed
+then this method will wait up to timeout seconds. If the call hasn’t
+completed in timeout seconds, then a <a class="reference internal" href="exceptions.html#yamcs.core.exceptions.TimeoutError" title="yamcs.core.exceptions.TimeoutError"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeoutError</span></code></a> will
+be raised. timeout can be an int or float. If timeout is not specified or
+None, there is no limit to the wait time.</p>
+<p>If the future is cancelled before completing then CancelledError will be
+raised.</p>
+<p>If the call completed without raising, None is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.Future.result">
+<code class="descname">result</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.Future.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value returned by the call. If the call hasn’t yet completed then
+this method will wait up to timeout seconds. If the call hasn’t completed in
+timeout seconds, then a <a class="reference internal" href="exceptions.html#yamcs.core.exceptions.TimeoutError" title="yamcs.core.exceptions.TimeoutError"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeoutError</span></code></a> will be raised.
+timeout can be an int or float. If timeout is not specified or None, there
+is no limit to the wait time.</p>
+<p>If the future is cancelled before completing then CancelledError will be
+raised.</p>
+<p>If the call raised, this method will raise the same exception.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.Future.running">
+<code class="descname">running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.Future.running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the call is currently being executed and cannot be cancelled.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.Future.set_exception">
+<code class="descname">set_exception</code><span class="sig-paren">(</span><em>exception</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.Future.set_exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the result of the work associated with the Future to the exception.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.Future.set_result">
+<code class="descname">set_result</code><span class="sig-paren">(</span><em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.Future.set_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the result of the work associated with the Future to result.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture">
+<em class="property">class </em><code class="descclassname">yamcs.core.futures.</code><code class="descname">WebSocketSubscriptionFuture</code><span class="sig-paren">(</span><em>manager</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#yamcs.core.futures.Future" title="yamcs.core.futures.Future"><code class="xref py py-class docutils literal notranslate"><span class="pre">yamcs.core.futures.Future</span></code></a></p>
+<p>Future for capturing the asynchronous execution of a WebSocket subscription.</p>
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.add_done_callback">
+<code class="descname">add_done_callback</code><span class="sig-paren">(</span><em>fn</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.add_done_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches the callable fn to the future. fn will be called, with the future
+as its only argument, when the future is cancelled or finishes running.</p>
+<p>Added callables are called in the order that they were added and are always
+called in a thread belonging to the process that added them. If the
+callable raises an Exception subclass, it will be logged and ignored. If
+the callable raises a BaseException subclass, the behavior is undefined.</p>
+<p>If the future has already completed or been cancelled, fn will be called
+immediately.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.cancel">
+<code class="descname">cancel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.cancel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the websocket and shutdowns the background thread consuming
+messages.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.cancelled">
+<code class="descname">cancelled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.cancelled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the call was successfully cancelled.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.done">
+<code class="descname">done</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the call was successfully cancelled or finished running.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.exception">
+<code class="descname">exception</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the exception raised by the call. If the call hasn’t yet completed
+then this method will wait up to timeout seconds. If the call hasn’t
+completed in timeout seconds, then a <a class="reference internal" href="exceptions.html#yamcs.core.exceptions.TimeoutError" title="yamcs.core.exceptions.TimeoutError"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeoutError</span></code></a> will
+be raised. timeout can be an int or float. If timeout is not specified or
+None, there is no limit to the wait time.</p>
+<p>If the future is cancelled before completing then CancelledError will be
+raised.</p>
+<p>If the call completed without raising, None is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.reply">
+<code class="descname">reply</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.reply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the initial reply. This is emitted before any subscription
+data is emitted. This function raises an exception if the subscription
+attempt failed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.result">
+<code class="descname">result</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the value returned by the call. If the call hasn’t yet completed then
+this method will wait up to timeout seconds. If the call hasn’t completed in
+timeout seconds, then a <a class="reference internal" href="exceptions.html#yamcs.core.exceptions.TimeoutError" title="yamcs.core.exceptions.TimeoutError"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeoutError</span></code></a> will be raised.
+timeout can be an int or float. If timeout is not specified or None, there
+is no limit to the wait time.</p>
+<p>If the future is cancelled before completing then CancelledError will be
+raised.</p>
+<p>If the call raised, this method will raise the same exception.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.running">
+<code class="descname">running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the call is currently being executed and cannot be cancelled.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.set_exception">
+<code class="descname">set_exception</code><span class="sig-paren">(</span><em>exception</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.set_exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the result of the work associated with the Future to the exception.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.core.futures.WebSocketSubscriptionFuture.set_result">
+<code class="descname">set_result</code><span class="sig-paren">(</span><em>result</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.core.futures.WebSocketSubscriptionFuture.set_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the result of the work associated with the Future to result.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">General Client</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="client.html">YamcsClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Futures</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">General Client</a><ul>
+      <li>Previous: <a href="exceptions.html" title="previous chapter">Exceptions</a></li>
+      <li>Next: <a href="../mdb/index.html" title="next chapter">Mission Database</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

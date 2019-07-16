@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>YamcsClient &#8212; yamcs-client 1.2.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css-overrides.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model" href="model.html" />
+    <link rel="prev" title="General Client" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="yamcsclient">
+<h1>YamcsClient<a class="headerlink" href="#yamcsclient" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="yamcs.client.YamcsClient">
+<em class="property">class </em><code class="descclassname">yamcs.client.</code><code class="descname">YamcsClient</code><span class="sig-paren">(</span><em>address</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">yamcs.core.client.BaseClient</span></code></p>
+<p>Client for accessing core Yamcs resources.</p>
+<p>The only state managed by this client is its connection info to Yamcs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The address of Yamcs in the format ‘hostname:port’</p></li>
+<li><p><strong>tls</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>]</em>) – Whether TLS encryption is expected</p></li>
+<li><p><strong>tls_verify</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>]</em>) – Whether server certificate verification is enabled
+(only applicable if <code class="docutils literal notranslate"><span class="pre">tls=True</span></code>)</p></li>
+<li><p><strong>credentials</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="authentication.html#yamcs.core.auth.Credentials" title="yamcs.core.auth.Credentials"><em>Credentials</em></a><em>]</em>) – Credentials for when the server is secured</p></li>
+<li><p><strong>user_agent</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – Optionally override the default user agent</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.create_data_link_subscription">
+<code class="descname">create_data_link_subscription</code><span class="sig-paren">(</span><em>instance</em>, <em>on_data=None</em>, <em>timeout=60</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.create_data_link_subscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new subscription for receiving data link updates of an instance.</p>
+<p>This method returns a future, then returns immediately. Stop the
+subscription by canceling the future.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p></li>
+<li><p><strong>on_data</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>[</em><a class="reference internal" href="model.html#yamcs.model.LinkEvent" title="yamcs.model.LinkEvent"><em>LinkEvent</em></a><em>]</em><em>)</em>) – Function that gets called with
+<a class="reference internal" href="model.html#yamcs.model.LinkEvent" title="yamcs.model.LinkEvent"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinkEvent</span></code></a> updates.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>]</em>) – The amount of seconds to wait for the request to
+complete.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Future that can be used to manage the background websocket
+subscription.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#yamcs.client.DataLinkSubscription" title="yamcs.client.DataLinkSubscription">DataLinkSubscription</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.create_event_subscription">
+<code class="descname">create_event_subscription</code><span class="sig-paren">(</span><em>instance</em>, <em>on_data</em>, <em>timeout=60</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.create_event_subscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new subscription for receiving events of an instance.</p>
+<p>This method returns a future, then returns immediately. Stop the
+subscription by canceling the future.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name</p></li>
+<li><p><strong>on_data</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>[</em><a class="reference internal" href="model.html#yamcs.model.Event" title="yamcs.model.Event"><em>Event</em></a><em>]</em><em>)</em>) – Function that gets called on each <a class="reference internal" href="model.html#yamcs.model.Event" title="yamcs.model.Event"><code class="xref py py-class docutils literal notranslate"><span class="pre">Event</span></code></a>.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>]</em>) – The amount of seconds to wait for the request to
+complete.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Future that can be used to manage the background websocket
+subscription.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="futures.html#yamcs.core.futures.WebSocketSubscriptionFuture" title="yamcs.core.futures.WebSocketSubscriptionFuture">WebSocketSubscriptionFuture</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.create_instance">
+<code class="descname">create_instance</code><span class="sig-paren">(</span><em>name</em>, <em>template</em>, <em>args=None</em>, <em>labels=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.create_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new instance based on an existing template. This method blocks
+until the instance is fully started.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p></li>
+<li><p><strong>template</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of an existing template.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.create_time_subscription">
+<code class="descname">create_time_subscription</code><span class="sig-paren">(</span><em>instance</em>, <em>on_data=None</em>, <em>timeout=60</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.create_time_subscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new subscription for receiving time updates of an instance.
+Time updates are emitted at 1Hz.</p>
+<p>This method returns a future, then returns immediately. Stop the
+subscription by canceling the future.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name</p></li>
+<li><p><strong>on_data</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a><em>]</em><em>)</em>) – Function that gets called with
+<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a> updates.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>]</em>) – The amount of seconds to wait for the request to
+complete.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Future that can be used to manage the background websocket
+subscription.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#yamcs.client.TimeSubscription" title="yamcs.client.TimeSubscription">TimeSubscription</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.disable_data_link">
+<code class="descname">disable_data_link</code><span class="sig-paren">(</span><em>instance</em>, <em>link</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.disable_data_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables a data link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p></li>
+<li><p><strong>link</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the data link.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.enable_data_link">
+<code class="descname">enable_data_link</code><span class="sig-paren">(</span><em>instance</em>, <em>link</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.enable_data_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables a data link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p></li>
+<li><p><strong>link</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the data link.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.get_archive">
+<code class="descname">get_archive</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.get_archive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an object for working with the Archive of the specified instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../archive/client.html#yamcs.archive.client.ArchiveClient" title="yamcs.archive.client.ArchiveClient">ArchiveClient</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.get_auth_info">
+<code class="descname">get_auth_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.get_auth_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns general authentication information. This operation
+does not require authenticating and is useful to test
+if a server requires authentication or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#yamcs.model.AuthInfo" title="yamcs.model.AuthInfo">AuthInfo</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.get_data_link">
+<code class="descname">get_data_link</code><span class="sig-paren">(</span><em>instance</em>, <em>link</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.get_data_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single data link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p></li>
+<li><p><strong>link</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the data link.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.model.Link" title="yamcs.model.Link">Link</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.get_mdb">
+<code class="descname">get_mdb</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.get_mdb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an object for working with the MDB of the specified instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../mdb/client.html#yamcs.mdb.client.MDBClient" title="yamcs.mdb.client.MDBClient">MDBClient</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.get_processor">
+<code class="descname">get_processor</code><span class="sig-paren">(</span><em>instance</em>, <em>processor</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.get_processor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an object for working with a specific Yamcs processor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p></li>
+<li><p><strong>processor</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A processor name within that instance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../tmtc/client.html#yamcs.tmtc.client.ProcessorClient" title="yamcs.tmtc.client.ProcessorClient">ProcessorClient</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.get_server_info">
+<code class="descname">get_server_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.get_server_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return general server info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#yamcs.model.ServerInfo" title="yamcs.model.ServerInfo">ServerInfo</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.get_time">
+<code class="descname">get_time</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.get_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current mission time for the specified instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)">datetime</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.get_user_info">
+<code class="descname">get_user_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.get_user_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information on the authenticated user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#yamcs.model.UserInfo" title="yamcs.model.UserInfo">UserInfo</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.list_clients">
+<code class="descname">list_clients</code><span class="sig-paren">(</span><em>instance=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.list_clients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the clients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – A Yamcs instance name.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="model.html#yamcs.model.Client" title="yamcs.model.Client">yamcs.model.Client</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.list_data_links">
+<code class="descname">list_data_links</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.list_data_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the data links visible to this client.</p>
+<p>Data links are returned in random order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="model.html#yamcs.model.Link" title="yamcs.model.Link">Link</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.list_instance_templates">
+<code class="descname">list_instance_templates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.list_instance_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the available instance templates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.list_instances">
+<code class="descname">list_instances</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.list_instances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the instances.</p>
+<p>Instances are returned in lexicographical order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Iterable[<a class="reference internal" href="model.html#yamcs.model.Instance" title="yamcs.model.Instance">Instance</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.list_processors">
+<code class="descname">list_processors</code><span class="sig-paren">(</span><em>instance=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.list_processors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists the processors.</p>
+<p>Processors are returned in lexicographical order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – A Yamcs instance name.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="model.html#yamcs.model.Processor" title="yamcs.model.Processor">Processor</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.list_services">
+<code class="descname">list_services</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.list_services" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the services for an instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterable[<a class="reference internal" href="model.html#yamcs.model.Service" title="yamcs.model.Service">Service</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.restart_instance">
+<code class="descname">restart_instance</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.restart_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restarts a single instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.send_event">
+<code class="descname">send_event</code><span class="sig-paren">(</span><em>instance</em>, <em>message</em>, <em>event_type=None</em>, <em>time=None</em>, <em>severity='info'</em>, <em>source=None</em>, <em>sequence_number=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.send_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Post a new event.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p></li>
+<li><p><strong>message</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Event message.</p></li>
+<li><p><strong>event_type</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – Type of event.</p></li>
+<li><p><strong>severity</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – The severity level of the event. One of <code class="docutils literal notranslate"><span class="pre">info</span></code>,
+<code class="docutils literal notranslate"><span class="pre">watch</span></code>, <code class="docutils literal notranslate"><span class="pre">warning</span></code>, <code class="docutils literal notranslate"><span class="pre">critical</span></code> or <code class="docutils literal notranslate"><span class="pre">severe</span></code>.
+Defaults to <code class="docutils literal notranslate"><span class="pre">info</span></code>.</p></li>
+<li><p><strong>time</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><em>datetime</em></a><em>]</em>) – Time of the event. If unspecified, defaults to mission time.</p></li>
+<li><p><strong>source</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em>) – Source of the event. Useful for grouping events in the
+archive. When unset this defaults to <code class="docutils literal notranslate"><span class="pre">User</span></code>.</p></li>
+<li><p><strong>sequence_number</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>]</em>) – Sequence number of this event. This is primarily
+used to determine unicity of events coming from
+the same source. If not set Yamcs will
+automatically assign a sequential number as if
+every submitted event is unique.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.start_instance">
+<code class="descname">start_instance</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.start_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts a single instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.start_service">
+<code class="descname">start_service</code><span class="sig-paren">(</span><em>instance</em>, <em>service</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.start_service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts a single service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p></li>
+<li><p><strong>service</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the service.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.stop_instance">
+<code class="descname">stop_instance</code><span class="sig-paren">(</span><em>instance</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.stop_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops a single instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.YamcsClient.stop_service">
+<code class="descname">stop_service</code><span class="sig-paren">(</span><em>instance</em>, <em>service</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.YamcsClient.stop_service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops a single service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A Yamcs instance name.</p></li>
+<li><p><strong>service</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the service.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.client.TimeSubscription">
+<em class="property">class </em><code class="descclassname">yamcs.client.</code><code class="descname">TimeSubscription</code><span class="sig-paren">(</span><em>manager</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.TimeSubscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="futures.html#yamcs.core.futures.WebSocketSubscriptionFuture" title="yamcs.core.futures.WebSocketSubscriptionFuture"><code class="xref py py-class docutils literal notranslate"><span class="pre">yamcs.core.futures.WebSocketSubscriptionFuture</span></code></a></p>
+<p>Local object providing access to time updates.</p>
+<p>A subscription object stores the last time info.</p>
+<dl class="attribute">
+<dt id="yamcs.client.TimeSubscription.time">
+<code class="descname">time</code><em class="property"> = None</em><a class="headerlink" href="#yamcs.client.TimeSubscription.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>The last time info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yamcs.client.DataLinkSubscription">
+<em class="property">class </em><code class="descclassname">yamcs.client.</code><code class="descname">DataLinkSubscription</code><span class="sig-paren">(</span><em>manager</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.DataLinkSubscription" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="futures.html#yamcs.core.futures.WebSocketSubscriptionFuture" title="yamcs.core.futures.WebSocketSubscriptionFuture"><code class="xref py py-class docutils literal notranslate"><span class="pre">yamcs.core.futures.WebSocketSubscriptionFuture</span></code></a></p>
+<p>Local object providing access to data link updates.</p>
+<p>A subscription object stores the last link info for
+each link.</p>
+<dl class="method">
+<dt id="yamcs.client.DataLinkSubscription.get_data_link">
+<code class="descname">get_data_link</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.DataLinkSubscription.get_data_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the latest link state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Identifying name of the data link</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="model.html#yamcs.model.Link" title="yamcs.model.Link">Link</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="yamcs.client.DataLinkSubscription.list_data_links">
+<code class="descname">list_data_links</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#yamcs.client.DataLinkSubscription.list_data_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a snapshot of all instance links.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="model.html#yamcs.model.Link" title="yamcs.model.Link">Link</a>[]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">yamcs-client</a></h1>
+
+
+
+<p class="blurb">Yamcs Client Library for Python</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">General Client</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">YamcsClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="futures.html">Futures</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mdb/index.html">Mission Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tmtc/index.html">TM/TC Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../storage/index.html">Object Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">General Client</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">General Client</a></li>
+      <li>Next: <a href="model.html" title="next chapter">Model</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script><p>&nbsp;</p>
+<div style="padding-top: 2em;">
+    <h3>Project Links</h3>
+    <ul>
+        <li class="toctree-l1">
+            <a href="https://github.com/yamcs/yamcs-python/tree/master/yamcs-client">GitHub</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://pypi.org/project/yamcs-client/">PyPI</a>
+        </li>
+        <li class="toctree-l1">
+            <a href="https://www.yamcs.org">yamcs.org</a>
+        </li>
+    </ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Space Applications Services.
+      
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-123272152-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>
